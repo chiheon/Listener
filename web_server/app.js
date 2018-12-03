@@ -5,16 +5,14 @@
  */
 
 require('dotenv').config();
-const createError = require('http-errors');
 const path = require('path');
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const api_routers = require('./routes/routes');
+const api_db = require('./routes/routes');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -30,14 +28,14 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/api',api_routers); // routing 처리
+app.use('/api',api_db); // routing 처리
 app.use('*', express.static('clientApp')); // const clientApp = path.join(__dirname, '../client/build')i
 
 // CONNECT TO MONGODB SERVE
-mongoose.connect(process.env.Mongo_URI, { })
+mongoose.connect('mongodb://localhost:27017/Database', { })
     .then(()=> console.log('Successfully connected to mongodb'))
     .catch(e => console.error(e));
 
 app.listen(port, (err)=> {
-  console.log(`SYSTEM: HTTP SERVER RUNNING ON ${port} PORT`);
+    console.log(`SYSTEM: HTTP SERVER RUNNING ON ${port} PORT`);
 });

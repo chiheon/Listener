@@ -1,12 +1,18 @@
 const Web3 = require('web3');
 // import Web3 from 'web3';
 const web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/ef6f0c88c7214044b408e87817b0f1ae')); // API KEY
-// const web3 = new Web3(new Web3.providers.WebsocketProvider('https://ropsten.etherscan.io/ef6f0c88c7214044b408e87817b0f1ae')); // API KEY
-// const web3 = new Web3(window.web3.currentProvider); // metamask
+// const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545')); // geth 주소
 
+/* Event listener
+*   event DietData(address indexed party, bytes32 ipfsHash); //party ---> msg.sender라고 생각하면 될 듯
+*   event OfferCreated (address indexed party, uint indexed offerID, string ipfsHash);
+*   event OfferAccepted (address indexed party, uint indexed offerID, string ipfsHash);
+*   event OfferFinalized (address indexed party, uint indexed offerID, string ipfsHash);
+*   event OfferData (address indexed party, uint indexed offerID, string ipfsHash);
+* */
 
 // insert contract data
-const address = '0x723b17a897c770a69f67b256275424530639d3e6';
+const address = '0xdd365385c376668ac848bb05ff07ae9f9b8171de';
 const abi = [
     {
         "constant": false,
